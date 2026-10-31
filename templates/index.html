@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Smart Parking Route Finder</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="header">
+            <div>
+                <p class="eyebrow">DAA MINI PROJECT</p>
+
+                <h1>Smart Parking Route Finder</h1>
+
+                <p class="subtitle">
+                    Find the nearest available parking slot
+                    using Dijkstra’s algorithm.
+                </p>
+            </div>
+
+            <div class="header-badge">
+                Weighted Graph · Two-way Lanes
+            </div>
+        </header>
+
+        <!-- Parking statistics -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <span>Total Slots</span>
+                <strong id="total-count">10</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Available Slots</span>
+                <strong
+                    id="available-count"
+                    class="green-text"
+                >
+                    4
+                </strong>
+            </div>
+
+            <div class="stat-card">
+                <span>Occupied Slots</span>
+                <strong
+                    id="occupied-count"
+                    class="red-text"
+                >
+                    6
+                </strong>
+            </div>
+
+        </section>
+
+        <section class="main-grid">
+
+            <!-- Parking map -->
+            <div class="card">
+
+                <h2>Parking Map</h2>
+
+                <p class="description">
+                    Click a parking slot to change its availability.
+                </p>
+
+                <div class="map-wrapper">
+                    <svg
+                        id="parking-map"
+                        viewBox="0 0 1000 520"
+                        role="group"
+                        aria-label="Interactive parking map"
+                    ></svg>
+                </div>
+
+                <div class="legend">
+                    <span>
+                        <i class="dot available-dot"></i>
+                        Available
+                    </span>
+
+                    <span>
+                        <i class="dot occupied-dot"></i>
+                        Occupied
+                    </span>
+
+                    <span>
+                        <i class="dot route-dot"></i>
+                        Shortest Route
+                    </span>
+                </div>
+
+                <p class="small-note">
+                    Edge labels represent distance in metres.
+                    The map is schematic and is not drawn to scale.
+                </p>
+
+            </div>
+
+            <!-- Controls -->
+            <aside class="card">
+
+                <h2>Find Parking</h2>
+
+                <label for="starting-point">
+                    Starting Point
+                </label>
+
+                <select id="starting-point">
+                    <option>Main Entrance</option>
+                </select>
+
+                <button id="find-button">
+                    Find Nearest Parking
+                </button>
+
+                <button
+                    id="reset-button"
+                    class="secondary-button"
+                >
+                    Reset Demo
+                </button>
+
+                <div
+                    id="result"
+                    class="result-box"
+                    aria-live="polite"
+                >
+                    Select availability and click
+                    Find Nearest Parking.
+                </div>
+
+                <h3>How It Works</h3>
+
+                <ol class="instructions">
+                    <li>Set parking availability.</li>
+                    <li>Calculate shortest distances.</li>
+                    <li>Select the nearest available slot.</li>
+                    <li>Display its route.</li>
+                </ol>
+
+                <p class="small-note">
+                    Availability is updated manually.
+                    Finding a route does not reserve a slot.
+                </p>
+
+            </aside>
+
+        </section>
+
+        <section class="details-grid">
+
+            <!-- Algorithm steps -->
+            <div class="card">
+
+                <h2>Dijkstra’s Calculation Table</h2>
+
+                <p class="description">
+                    Each row shows a node whose shortest
+                    distance has been finalized.
+                </p>
+
+                <div class="table-wrapper">
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Step</th>
+                                <th>Node</th>
+                                <th>Distance</th>
+                                <th>Parent</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="steps-body">
+                            <tr>
+                                <td colspan="4">
+                                    Run the algorithm to view steps.
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- Available slot comparison -->
+            <div class="card">
+
+                <h2>Available Slot Distances</h2>
+
+                <p class="description">
+                    Slots are ordered by shortest driving distance.
+                </p>
+
+                <div id="candidate-list">
+                    No calculation yet.
+                </div>
+
+                <p class="small-note">
+                    Equal distances are resolved by slot name.
+                </p>
+
+            </div>
+
+        </section>
+
+        <footer>
+            Python + Flask · Dijkstra’s Algorithm · Min-heap
+        </footer>
+
+    </main>
+
+    <!-- Configuration supplied by Python -->
+    <script id="parking-config" type="application/json">
+        {{ config | tojson }}
+    </script>
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+</body>
+
+</html>

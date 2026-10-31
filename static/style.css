@@ -1,0 +1,326 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f3f6fa;
+    color: #1c2d45;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1320px;
+    margin: auto;
+    padding: 35px 24px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.eyebrow {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+h1 {
+    margin: 10px 0;
+    font-size: 32px;
+}
+
+.subtitle,
+.description {
+    color: #66758a;
+    line-height: 1.6;
+}
+
+.header-badge {
+    background: #e5edf9;
+    padding: 12px 18px;
+    border-radius: 25px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 25px 0;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #e0e7ef;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.stat-card span {
+    display: block;
+    color: #66758a;
+    font-size: 14px;
+}
+
+.stat-card strong {
+    display: block;
+    margin-top: 12px;
+    font-size: 32px;
+}
+
+.green-text {
+    color: #218153;
+}
+
+.red-text {
+    color: #c74c53;
+}
+
+.main-grid,
+.details-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2.3fr) minmax(280px, 1fr);
+    gap: 20px;
+}
+
+.details-grid {
+    margin-top: 20px;
+}
+
+.card {
+    min-width: 0;
+    background: white;
+    border: 1px solid #e0e7ef;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+h2 {
+    margin: 0 0 12px;
+    font-size: 21px;
+}
+
+h3 {
+    margin-top: 25px;
+    font-size: 16px;
+}
+
+.description {
+    font-size: 14px;
+}
+
+.map-wrapper {
+    overflow-x: auto;
+    background: #edf2f6;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+#parking-map {
+    display: block;
+    width: 100%;
+    min-width: 580px;
+}
+
+.legend {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+.legend span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.available-dot {
+    background: #22a16a;
+}
+
+.occupied-dot {
+    background: #d96670;
+}
+
+.route-dot {
+    background: #2563eb;
+}
+
+.small-note {
+    color: #728096;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+label {
+    display: block;
+    margin: 22px 0 10px;
+    font-size: 14px;
+}
+
+select,
+button {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d4deeb;
+    border-radius: 8px;
+    font: inherit;
+}
+
+select {
+    background: white;
+    color: #1c2d45;
+}
+
+button {
+    margin-top: 16px;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(0.95);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.secondary-button {
+    background: white;
+    color: #24496e;
+}
+
+.result-box {
+    margin-top: 22px;
+    padding: 16px;
+    background: #eff5ff;
+    border-radius: 10px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.result-box strong {
+    color: #176b47;
+}
+
+.route-text {
+    margin-bottom: 0;
+    font-size: 13px;
+    color: #536780;
+}
+
+.instructions {
+    padding-left: 20px;
+    color: #66758a;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.table-wrapper {
+    max-height: 390px;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+}
+
+th,
+td {
+    padding: 13px 10px;
+    border-bottom: 1px solid #e6ebf1;
+}
+
+th {
+    background: #f5f7fa;
+}
+
+.candidate-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #e6ebf1;
+}
+
+.parking-slot {
+    cursor: pointer;
+}
+
+.parking-slot text {
+    pointer-events: none;
+}
+
+.parking-slot:focus rect {
+    stroke: #1d4ed8;
+    stroke-width: 5;
+}
+
+footer {
+    padding: 30px 0 5px;
+    text-align: center;
+    color: #728096;
+    font-size: 12px;
+}
+
+@media (max-width: 900px) {
+    .header {
+        display: block;
+    }
+
+    .header-badge {
+        display: inline-block;
+    }
+
+    .main-grid,
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+    .container {
+        padding: 22px 12px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .stats {
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 14px 10px;
+    }
+
+    .stat-card span {
+        font-size: 12px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+}
